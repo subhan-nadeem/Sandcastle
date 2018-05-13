@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+        <import type="android.view.Gravity"/>
+
+        <variable
+            name="message"
+            type="com.subhan_nadeem.sandcastle.models.Message"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="5dp">
+
+        <TextView
+            android:id="@+id/message_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bubble_blue"
+            android:maxWidth="200dp"
+            android:text="@{message.message}"
+            android:layout_marginLeft="5dp"
+            android:textColor="@android:color/white"
+            android:textIsSelectable="true"
+            android:textSize="16sp"
+            tools:background="@drawable/bubble_blue"
+            tools:text="This is a test message"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/message_text_view"
+            android:layout_below="@id/message_text_view"
+            android:paddingTop="5dp"
+            android:text="@{message.username}"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:text="Username"
+            android:layout_alignStart="@id/message_text_view"/>
+
+        <TextView
+            android:id="@+id/timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/message_text_view"
+            android:layout_toLeftOf="@id/message_text_view"
+            android:text="@{message.timestamp}"
+            android:textSize="10sp"
+            tools:text="12:00AM"
+            android:layout_toStartOf="@id/message_text_view"/>
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:theme="@style/Progressbar.Message"
+            android:layout_height="wrap_content"
+            android:visibility="@{message.uploaded ? View.GONE : View.VISIBLE}"
+            android:layout_alignTop="@id/message_text_view"
+            android:layout_toLeftOf="@id/message_text_view"
+            android:layout_toStartOf="@id/message_text_view"/>
+
+    </RelativeLayout>
+</layout>

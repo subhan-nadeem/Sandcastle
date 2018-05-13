@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="view"
+            type="com.subhan_nadeem.sandcastle.features.auth.ProfilePhotoFragment"/>
+
+        <variable
+            name="viewModel"
+            type="com.subhan_nadeem.sandcastle.features.auth.ProfilePhotoViewModel"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/sandcastle_blue"
+        android:orientation="vertical"
+        android:paddingTop="40dp"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/welcome_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/welcome_to_sandcastle"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:textColor="@android:color/white"
+            android:textSize="30sp"
+            />
+
+        <TextView
+            android:id="@+id/welcome_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/welcome_text"
+            android:layout_centerHorizontal="true"
+            android:text="@{viewModel.username}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@android:color/white"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            tools:text="user"/>
+
+        <FrameLayout
+            android:id="@+id/profile_picture_layout"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                app:civ_border_color="@color/colorAlternate"
+                app:civ_border_width="2dp"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/profile_picture_lottie"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                app:lottie_autoPlay="true"
+                app:lottie_colorFilter="@color/colorAlternate"
+                app:lottie_fileName="outline_user.json"
+                app:lottie_loop="false"/>
+        </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/upload_picture_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile_picture_layout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="@string/do_you_want_to_upload_a_profile_picture"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:textColor="@android:color/white"/>
+
+        <TextView
+            android:id="@+id/profile_picture_skip"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="15dp"
+            android:gravity="bottom|start"
+            android:onClick="@{() -> view.onSkipClick()}"
+            android:paddingLeft="15dp"
+            android:text="@string/skip"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/profile_picture_yes"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="15dp"
+            android:gravity="bottom|end"
+            android:onClick="@{() -> view.onYesClick()}"
+            android:paddingRight="15dp"
+            android:text="@string/yes"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+</layout>

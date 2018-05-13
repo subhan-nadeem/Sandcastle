@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="newRoomHandler"
+            type="com.subhan_nadeem.sandcastle.features.new_room.NewRoomSheetHandler"/>
+
+        <variable
+            name="view"
+            type="com.subhan_nadeem.sandcastle.features.maps.MapsFragment"/>
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinator_map_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <fragment
+            android:id="@+id/map_fragment"
+            class="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <include
+            android:id="@+id/bottom_sheet_layout"
+            layout="@layout/bottom_sheet_new_chat"
+            bind:handler="@{newRoomHandler}"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_add"
+            android:layout_width="@dimen/map_fab_size"
+            android:layout_height="@dimen/map_fab_size"
+            android:layout_margin="25dp"
+            android:onClick="@{() -> view.onNewChatClick()}"
+            android:scaleType="center"
+            android:src="@drawable/ic_add_white"
+            app:backgroundTint="@color/sandcastle_blue"
+            app:layout_anchor="@id/bottom_sheet_layout"
+            app:layout_anchorGravity="top|end"/>
+
+        <Space
+            android:id="@+id/space_fab"
+            android:layout_width="@dimen/fab_margin"
+            android:layout_height="@dimen/fab_margin"
+            android:layout_gravity="top|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:visibility="invisible"
+            app:layout_anchor="@id/fab_add"
+            app:layout_anchorGravity="top"/>
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_locate"
+            android:layout_width="@dimen/map_fab_size"
+            android:layout_height="@dimen/map_fab_size"
+            android:layout_gravity="top|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:onClick="@{() -> view.moveCameraToUserLocation(true)}"
+            android:scaleType="center"
+            android:src="@drawable/ic_my_location_unlocked"
+            app:backgroundTint="@android:color/white"
+            app:layout_anchor="@id/space_fab"
+            app:layout_anchorGravity="top"/>
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

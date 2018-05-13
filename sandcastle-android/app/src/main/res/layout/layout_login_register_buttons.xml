@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.subhan_nadeem.sandcastle.features.auth.BaseAuthenticationViewModel"/>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="view"
+            type="com.subhan_nadeem.sandcastle.features.auth.BaseAuthenticationFragment"/>
+
+    </data>
+
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/loadingLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}"
+            tools:visibility="gone">
+
+            <TextView
+                android:id="@+id/authenticateText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-thin"
+                android:gravity="center"
+                android:text="@{viewModel.loadingText}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/loadingLottie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="plane.json"
+                app:lottie_loop="true"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/doneLottie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="checked_done.json"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/userButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.loading ? View.GONE : View.VISIBLE}"
+            tools:visibility="visible">
+
+            <Button
+                android:id="@+id/btn_execute"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@color/colorAlternate"
+                android:onClick="@{() -> viewModel.onExecuteButtonClick()}"
+                android:padding="12dp"
+                android:text="@{viewModel.executeButtonText}"
+                android:textColor="@android:color/white"/>
+
+            <Button
+                android:id="@+id/facebook_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="18dp"
+                android:background="@color/colorFacebook"
+                android:drawableLeft="@drawable/com_facebook_button_icon"
+                android:drawableStart="@drawable/com_facebook_button_icon"
+                android:gravity="center"
+                android:minHeight="10dp"
+                android:onClick="@{() -> viewModel.onExecuteButtonClick()}"
+                android:paddingEnd="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="20dp"
+                android:paddingStart="10dp"
+                android:text="@{viewModel.facebookButtonText}"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"/>
+
+            <TextView
+                android:id="@+id/btn_switch_mode"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:onClick="@{() -> view.onSwitchModeClick()}"
+                android:text="@{viewModel.switchText}"
+                android:textSize="16sp"/>
+        </LinearLayout>
+    </FrameLayout>
+</layout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.subhan_nadeem.sandcastle.features.main.MainActivityViewModel"/>
+
+        <variable
+            name="view"
+            type="com.subhan_nadeem.sandcastle.features.main.MainActivity"/>
+
+        <variable
+            name="user"
+            type="com.subhan_nadeem.sandcastle.models.User"/>
+
+        <import type="android.view.View"/>
+    </data>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nav_header_height"
+        android:background="@drawable/side_nav_bar"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+        <TextView
+            android:id="@+id/nav_header_hello_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="@string/hello_user_prefix"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+        <TextView
+            android:id="@+id/headerUserText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/nav_header_hello_text"
+            android:layout_toRightOf="@id/nav_header_hello_text"
+            android:text="@{user.name}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textStyle="bold"
+            tools:text="user"/>
+
+
+        <ProgressBar
+            style="@style/Progressbar.Message"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_above="@id/nav_header_hello_text"
+            android:layout_marginBottom="16dp"
+            android:visibility="@{viewModel.avatarUploading ? View.VISIBLE : View.GONE}"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileImageView"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_above="@id/nav_header_hello_text"
+            android:layout_marginBottom="16dp"
+            android:visibility="@{viewModel.avatarUploading ? View.GONE : View.VISIBLE}"
+            app:civ_border_color="@color/colorAlternate"
+            app:civ_border_width="2dp"
+            android:onClick="@{() -> view.showProfileImageDialog()}"
+            tools:src="@drawable/placeholder_profile"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/editBadge"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignBottom="@+id/profileImageView"
+            android:layout_alignLeft="@+id/profileImageView"
+            android:layout_alignStart="@+id/profileImageView"
+            android:src="@drawable/edit_circular"
+            android:visibility="@{viewModel.avatarUploading ? View.GONE : View.VISIBLE}"/>
+    </RelativeLayout>
+</layout>

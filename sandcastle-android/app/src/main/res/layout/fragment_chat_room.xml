@@ -1,0 +1,33 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable
+            name="view"
+            type="com.subhan_nadeem.sandcastle.features.chat_room.ChatFragment"/>
+
+        <variable
+            name="viewModel"
+            type="com.subhan_nadeem.sandcastle.features.chat_room.ChatViewModel"/>
+    </data>
+
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:id="@+id/coordinator_chat"
+            android:fitsSystemWindows="true">
+
+            <include
+                android:id="@+id/contentChat"
+                layout="@layout/content_chat_room"
+                bind:view="@{view}"
+                bind:viewModel="@{viewModel}"
+                />
+
+        </android.support.design.widget.CoordinatorLayout>
+</layout>

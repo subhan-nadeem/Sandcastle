@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Sandcastle</string>
+    <string name="title_activity_single_fragment">SingleFragmentActivity</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- Facebook Auth -->
+    <string name="facebook_app_id">373292719709907</string>
+    <string name="fb_login_protocol_scheme">fb373292719709907</string>
+
+    <string name="name_hint">Student Life Centre, House Party…</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="password_reenter">Enter your password again</string>
+    <string name="username">Username</string>
+    <string name="sandcastle">sandcastle</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="home">Home</string>
+    <string name="log_out">Log Out</string>
+    <string name="new_castle">NEW CASTLE</string>
+    <string name="name">Name</string>
+    <string name="sandcastle_name">Sandcastle Name</string>
+    <string name="people_are_here">people are here</string>
+    <string name="send_a_message">Send a message!</string>
+    <string name="switch_to_register_text">No account yet? Create one!</string>
+    <string name="switch_to_login_text">Already registered? Log in now!</string>
+    <string name="authenticating">Authenticating…</string>
+    <string name="registering">Registering…</string>
+    <string name="settings">Settings</string>
+    <string name="my_profile">My Profile</string>
+    <string name="search_sandcastles">Search Sandcastles</string>
+    <string name="people_nearby">People Nearby</string>
+    <string name="please_wait">Please wait…</string>
+    <string name="log_in_with_facebook">Log in with Facebook</string>
+    <string name="register_with_facebook">Register with Facebook</string>
+    <string name="welcome_to_sandcastle">Welcome to Sandcastle,</string>
+    <string name="yes">Yes</string>
+    <string name="skip">Skip</string>
+    <string name="do_you_want_to_upload_a_profile_picture">Do you want to upload a profile picture?</string>
+    <string name="uploading_picture">Uploading picture…</string>
+    <string name="profile_picture_upload_successful">Profile picture uploaded successfully!</string>
+    <string name="hello_user_prefix">Hello,&#160;</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="new_profile_picture">New Profile Picture</string>
+    <string name="delete_profile_picture">Delete Profile Picture</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis rutrum justo, at accumsan nulla pharetra sit amet. Sed egestas eu massa a feugiat. Sed fermentum ornare aliquam. Phasellus in lectus vitae ex commodo cursus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam tincidunt, mi ut scelerisque convallis, dolor magna molestie nibh, id viverra erat mauris pulvinar augue. Nam in augue nec velit egestas ultricies et ac risus.</string>
+</resources>

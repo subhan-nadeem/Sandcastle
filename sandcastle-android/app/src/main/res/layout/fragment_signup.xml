@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="view"
+            type="com.subhan_nadeem.sandcastle.features.auth.SignupFragment"/>
+
+        <variable
+            name="viewModel"
+            type="com.subhan_nadeem.sandcastle.features.auth.SignupViewModel"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/sandcastle_blue"
+        android:orientation="vertical"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="40dp"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:text="@string/sandcastle"
+            app:fontFamily="@font/family_coolvetica"
+            android:textColor="@android:color/white"
+            android:textSize="30sp"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/title_text"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:id="@+id/logo"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_sandcastle_large"/>
+
+        <!-- Username Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/usernameInput"
+            android:layout_below="@id/logo"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="10dp">
+            <EditText
+                android:id="@+id/input_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="@{viewModel.loading ? false : true}"
+                android:hint="@string/username"
+                android:inputType="text"
+                android:text="@={viewModel.username}"
+                android:textColor="@android:color/white"
+                app:error="@{viewModel.usernameError}"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Password Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/usernameInput"
+            android:id="@+id/passwordInput"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="10dp">
+            <EditText
+                android:id="@+id/input_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="@{viewModel.loading ? false : true}"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:text="@={viewModel.password}"
+                android:textColor="@android:color/white"
+                app:error="@{viewModel.passwordError}"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+        <!-- Password Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/passwordInput"
+            android:layout_marginBottom="8dp"
+            android:id="@+id/passwordReenterInput"
+            android:layout_marginTop="10dp">
+            <EditText
+                android:id="@+id/input_password_reenter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="@{viewModel.loading ? false : true}"
+                android:hint="@string/password_reenter"
+                android:inputType="textPassword"
+                android:text="@={viewModel.passwordReenter}"
+                android:textColor="@android:color/white"
+                app:error="@{viewModel.passwordError}"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <include
+            android:id="@+id/loginButtons"
+            android:layout_below="@id/passwordReenterInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            layout="@layout/layout_login_register_buttons"
+            bind:view="@{view}"
+            bind:viewModel="@{viewModel}"/>
+    </RelativeLayout>
+</layout>

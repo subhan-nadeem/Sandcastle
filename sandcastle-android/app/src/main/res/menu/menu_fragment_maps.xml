@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/map_people"
+        android:icon="@drawable/ic_group"
+        android:title="@string/people_nearby"
+        app:showAsAction="always"/>
+</menu>
