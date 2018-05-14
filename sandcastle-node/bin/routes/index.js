@@ -38,7 +38,7 @@ const authenticationMiddleware = function (app, db) {
         }
 
         try {
-            req.decoded = await db.verifyAuthToken(token, app.get('superSecret'));
+            req.decoded = await db.verifyAuthToken(token);
             next();
         }
         catch (error) {

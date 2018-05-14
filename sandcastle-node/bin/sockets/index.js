@@ -29,7 +29,7 @@ function authenticationMiddleware(io, db) {
 // Authentication middleware
     io.use(async function (socket, next) {
         try {
-            socket.decoded = await db.verifyAuthToken(socket.handshake.query.token, io.secret);
+            socket.decoded = await db.verifyAuthToken(socket.handshake.query.token);
             console.log("Socket accepted connection");
             next();
         }

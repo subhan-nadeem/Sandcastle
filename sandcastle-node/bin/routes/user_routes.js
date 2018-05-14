@@ -7,7 +7,6 @@
 const multer = require('multer');
 const upload = multer();
 const AWS = require('aws-sdk');
-AWS.config.loadFromPath('bin/aws_config.json');
 const uid = require('uid-safe'); // Used to generate refresh tokens
 const crypto = require('crypto'); // Used to generate SHA256 hashes for refresh tokens
 const AVATAR_BUCKET_NAME = 'sandcastle-avatars';
@@ -30,13 +29,13 @@ function getAvatarPath(userID) {
 }
 
 
-async function generateTokens(username, user_id, db, app) {
+async function generateTokens(username, user_id, db) {
     const JWTData = {
         name: username,
         id: user_id,
     };
 
-    const auth_token = await db.getAuthToken(JWTData, app.get('superSecret'));
+    const auth_token = await db.getAuthToken(JWTData);
 
     const refresh_token = await uid(18);
 
@@ -83,7 +82,7 @@ module.exports = function (app, db) {
             await db.updateFCMKey(req.body.fcm_key, user.user_id);
 
             const {auth_token, refresh_token, refresh_hash}
-                = await generateTokens(user.name, user.user_id, db, app);
+                = await generateTokens(user.name, user.user_id, db);
 
             await db.storeRefreshToken(user.user_id, refresh_hash, req.body.device_name);
 
@@ -125,7 +124,7 @@ module.exports = function (app, db) {
 
                 // Generate brand new tokens
                 const {auth_token, refresh_token, refresh_hash}
-                    = await generateTokens(authEntry.name, authEntry.user_id, db, app);
+                    = await generateTokens(authEntry.name, authEntry.user_id, db);
 
                 // Update refresh hash entry with new refresh hash
                 await db.updateRefreshTokenEntry(authEntry.auth_id, refresh_hash);

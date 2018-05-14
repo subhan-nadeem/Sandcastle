@@ -63,5 +63,3 @@ filesystem
 
 .idea
 /bin/serviceAccountKey.json
-/bin/sensitive_config.js
-/bin/aws_config.json

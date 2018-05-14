@@ -4,7 +4,15 @@
 
 // pg
 const {Pool} = require('pg');
-const pool = new Pool((require('../sensitive_config').database_pool_obj));
+const pool = new Pool(
+    {
+        user: process.env.DB_USER,
+        host: process.env.DB_HOST,
+        database: process.env.DB_NAME,
+        password: process.env.DB_PASSWORD,
+        port: process.env.DB_PORT
+    }
+);
 const escape = require('pg-escape');
 
 // bcrypt
@@ -99,10 +107,10 @@ module.exports = {
     updateFCMKey: (fcm_key, user_id) => pool.query("UPDATE users SET fcm_key=$1 WHERE user_id=$2;",
         [fcm_key, user_id]),
 
-    getAuthToken: (dataToBeEncrypted, secret) => jwt.sign(dataToBeEncrypted, secret, {
+    getAuthToken: (dataToBeEncrypted) => jwt.sign(dataToBeEncrypted, process.env.JWT_SECRET, {
         expiresIn: '30 minutes'
     }),
-    verifyAuthToken: (token, secret) => jwt.verify(token, secret),
+    verifyAuthToken: (token) => jwt.verify(token, process.env.JWT_SECRET),
     hash: (password) => bcrypt.hash(password, saltRounds),
     isValidPassword: (password, hash) => bcrypt.compare(password, hash),
     storeRefreshToken: async function (user_id, refresh_hash, device_name) {

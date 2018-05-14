@@ -1,24 +1,19 @@
-#!/usr/bin/env node
-
-// TODO replace with ENV
-const config = require('./sensitive_config');
+require('dotenv').config();
 const express = require('express');
 const db = require('./database');
 const app = express(); // Express instance
 const bodyParser = require('body-parser');
 const port = 3000;
 const PGPubSub = require('pg-pubsub');
-const pubsubInstance = new PGPubSub(config.connectionString);
+const pubsubInstance = new PGPubSub(`postgres://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`);
 
 // DEBUG
 const name = 'sandcastle';
 const debug = require('debug')('sc');
 debug('booting %s', name);
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.set('superSecret', config.secret);
 
 // Init routes
 require('./routes')(app, db);
@@ -29,7 +24,6 @@ const server = app.listen(port, () => {
 });
 
 const io = require('socket.io')(server);
-io.secret = config.secret;
 
 // Init sockets
 require('./sockets')(io, db, pubsubInstance);
